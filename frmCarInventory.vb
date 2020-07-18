@@ -43,7 +43,14 @@ Public Class CarInventory
 
         If (String.IsNullOrEmpty(errors)) Then ' Inputs were validated
             If (editMode) Then ' Editting an existing car
+                cars(currentlySelectedIndex).Make = inputMake
+                cars(currentlySelectedIndex).Model = inputModel
+                cars(currentlySelectedIndex).Year = inputYear
+                cars(currentlySelectedIndex).Price = inputPrice
+                cars(currentlySelectedIndex).NewCar = inputNewStatus
 
+                UpdateCarInventory() ' Recreates the list with the new data
+                txtOutput.Text = "Updated inventory."
             Else ' Create a new car object
                 car = New Car(inputNewStatus, inputMake, inputModel, inputYear, inputPrice)
                 cars.Add(car)
@@ -53,10 +60,32 @@ Public Class CarInventory
                 txtOutput.Text = "it worked!"
             End If
         Else ' Inputs were not validated
-                txtOutput.Text = errors
+            txtOutput.Text = errors
         End If
     End Sub
+    ' Event that allows the user to edit the object they have selected in the list view
+    Private Sub ListSelectedIndexChanged(sender As Object, e As EventArgs) Handles lvCarInventory.SelectedIndexChanged
+        Dim car As Car
+        If (Not lvCarInventory.FocusedItem Is Nothing) Then
+            currentlySelectedIndex = lvCarInventory.FocusedItem.Index
+            car = cars(currentlySelectedIndex)
 
+            editMode = True ' User is editting a car
+
+            ' Fill the form with the object's saved values
+            cboMake.Text = car.Make
+            txtModel.Text = car.Model
+            cboYear.Text = car.Year
+            txtPrice.Text = car.Price
+            chkNew.Checked = car.NewCar
+
+            txtOutput.Text = "Loaded car data to update"
+        End If
+    End Sub
+    ' Prevents the user from unchecking the check boxes in the list view
+    Private Sub ItemCheck(sender As Object, e As ItemCheckedEventArgs) Handles lvCarInventory.ItemCheck
+
+    End Sub
 #End Region
 
 #Region "Subs and Functions"
