@@ -22,6 +22,7 @@ Partial Class CarInventory
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.cboMake = New System.Windows.Forms.ComboBox()
         Me.lblMake = New System.Windows.Forms.Label()
         Me.lblModel = New System.Windows.Forms.Label()
@@ -43,6 +44,7 @@ Partial Class CarInventory
         Me.btnReset = New System.Windows.Forms.Button()
         Me.btnExit = New System.Windows.Forms.Button()
         Me.txtOutput = New System.Windows.Forms.TextBox()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.SuspendLayout()
         '
         'cboMake
@@ -53,7 +55,8 @@ Partial Class CarInventory
         Me.cboMake.Location = New System.Drawing.Point(84, 6)
         Me.cboMake.Name = "cboMake"
         Me.cboMake.Size = New System.Drawing.Size(135, 21)
-        Me.cboMake.TabIndex = 0
+        Me.cboMake.TabIndex = 1
+        Me.ToolTip1.SetToolTip(Me.cboMake, "List of all car manufacturers")
         '
         'lblMake
         '
@@ -61,7 +64,7 @@ Partial Class CarInventory
         Me.lblMake.Location = New System.Drawing.Point(41, 9)
         Me.lblMake.Name = "lblMake"
         Me.lblMake.Size = New System.Drawing.Size(37, 13)
-        Me.lblMake.TabIndex = 1
+        Me.lblMake.TabIndex = 0
         Me.lblMake.Text = "&Make:"
         '
         'lblModel
@@ -80,14 +83,16 @@ Partial Class CarInventory
         Me.cboYear.Location = New System.Drawing.Point(86, 81)
         Me.cboYear.Name = "cboYear"
         Me.cboYear.Size = New System.Drawing.Size(133, 21)
-        Me.cboYear.TabIndex = 3
+        Me.cboYear.TabIndex = 5
+        Me.ToolTip1.SetToolTip(Me.cboYear, "List of years for when the car was made")
         '
         'txtModel
         '
         Me.txtModel.Location = New System.Drawing.Point(84, 41)
         Me.txtModel.Name = "txtModel"
         Me.txtModel.Size = New System.Drawing.Size(135, 20)
-        Me.txtModel.TabIndex = 4
+        Me.txtModel.TabIndex = 3
+        Me.ToolTip1.SetToolTip(Me.txtModel, "Input field for car model")
         '
         'lblYear
         '
@@ -95,7 +100,7 @@ Partial Class CarInventory
         Me.lblYear.Location = New System.Drawing.Point(41, 84)
         Me.lblYear.Name = "lblYear"
         Me.lblYear.Size = New System.Drawing.Size(32, 13)
-        Me.lblYear.TabIndex = 5
+        Me.lblYear.TabIndex = 4
         Me.lblYear.Text = "&Year:"
         '
         'Label1
@@ -113,6 +118,7 @@ Partial Class CarInventory
         Me.txtPrice.Name = "txtPrice"
         Me.txtPrice.Size = New System.Drawing.Size(133, 20)
         Me.txtPrice.TabIndex = 7
+        Me.ToolTip1.SetToolTip(Me.txtPrice, "Input field for the price of the car")
         '
         'lblNew
         '
@@ -130,6 +136,7 @@ Partial Class CarInventory
         Me.chkNew.Name = "chkNew"
         Me.chkNew.Size = New System.Drawing.Size(15, 14)
         Me.chkNew.TabIndex = 9
+        Me.ToolTip1.SetToolTip(Me.chkNew, "Determines whether the car is new or used")
         Me.chkNew.UseVisualStyleBackColor = True
         '
         'lvCarInventory
@@ -142,6 +149,7 @@ Partial Class CarInventory
         Me.lvCarInventory.Name = "lvCarInventory"
         Me.lvCarInventory.Size = New System.Drawing.Size(400, 277)
         Me.lvCarInventory.TabIndex = 10
+        Me.ToolTip1.SetToolTip(Me.lvCarInventory, "List of all cars in the inventory")
         Me.lvCarInventory.UseCompatibleStateImageBehavior = False
         Me.lvCarInventory.View = System.Windows.Forms.View.Details
         '
@@ -179,8 +187,9 @@ Partial Class CarInventory
         Me.btnEnter.Location = New System.Drawing.Point(175, 538)
         Me.btnEnter.Name = "btnEnter"
         Me.btnEnter.Size = New System.Drawing.Size(75, 23)
-        Me.btnEnter.TabIndex = 11
+        Me.btnEnter.TabIndex = 12
         Me.btnEnter.Text = "&Enter"
+        Me.ToolTip1.SetToolTip(Me.btnEnter, "Enters all data from the input fields")
         Me.btnEnter.UseVisualStyleBackColor = True
         '
         'btnReset
@@ -188,8 +197,9 @@ Partial Class CarInventory
         Me.btnReset.Location = New System.Drawing.Point(256, 538)
         Me.btnReset.Name = "btnReset"
         Me.btnReset.Size = New System.Drawing.Size(75, 23)
-        Me.btnReset.TabIndex = 12
+        Me.btnReset.TabIndex = 13
         Me.btnReset.Text = "&Reset"
+        Me.ToolTip1.SetToolTip(Me.btnReset, "Resets the input fields")
         Me.btnReset.UseVisualStyleBackColor = True
         '
         'btnExit
@@ -197,8 +207,9 @@ Partial Class CarInventory
         Me.btnExit.Location = New System.Drawing.Point(337, 538)
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Size = New System.Drawing.Size(75, 23)
-        Me.btnExit.TabIndex = 13
+        Me.btnExit.TabIndex = 14
         Me.btnExit.Text = "E&xit"
+        Me.ToolTip1.SetToolTip(Me.btnExit, "Exits the application")
         Me.btnExit.UseVisualStyleBackColor = True
         '
         'txtOutput
@@ -208,7 +219,7 @@ Partial Class CarInventory
         Me.txtOutput.Multiline = True
         Me.txtOutput.Name = "txtOutput"
         Me.txtOutput.Size = New System.Drawing.Size(400, 62)
-        Me.txtOutput.TabIndex = 14
+        Me.txtOutput.TabIndex = 11
         '
         'CarInventory
         '
@@ -262,4 +273,5 @@ Partial Class CarInventory
     Friend WithEvents btnReset As Button
     Friend WithEvents btnExit As Button
     Friend WithEvents txtOutput As TextBox
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

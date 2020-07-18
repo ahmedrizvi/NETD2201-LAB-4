@@ -83,8 +83,10 @@ Public Class CarInventory
         End If
     End Sub
     ' Prevents the user from unchecking the check boxes in the list view
-    Private Sub ItemCheck(sender As Object, e As ItemCheckedEventArgs) Handles lvCarInventory.ItemCheck
-
+    Private Sub ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles lvCarInventory.ItemCheck
+        If (Not updatingData) Then
+            e.NewValue = e.CurrentValue
+        End If
     End Sub
 #End Region
 
