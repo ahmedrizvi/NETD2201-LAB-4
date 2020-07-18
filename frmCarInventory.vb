@@ -13,13 +13,11 @@ Public Class CarInventory
     Dim currentlySelectedIndex As Integer
 #End Region
 
-
-
 #Region "Event Handlers"
     ' Fills the year combo box with years 1920-2020 as soon as the form loads
     Private Sub CarInventory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         cboYear.Items.Clear() ' Clear the combo box before inputting the years
-        For addYear As Integer = 1920 To 2020
+        For addYear As Integer = 2020 To 1920 Step -1
             cboYear.Items.Add(addYear)
         Next
     End Sub
@@ -47,9 +45,9 @@ Public Class CarInventory
             If (editMode) Then ' Editting an existing car
 
             Else ' Create a new car object
-                car = New Car(inputMake, inputModel, inputYear, inputPrice, inputNewStatus)
+                car = New Car(inputNewStatus, inputMake, inputModel, inputYear, inputPrice)
                 cars.Add(car)
-
+                UpdateCarInventory()
                 ResetForm()
 
                 txtOutput.Text = "it worked!"
@@ -62,6 +60,7 @@ Public Class CarInventory
 #End Region
 
 #Region "Subs and Functions"
+    ' Function that takes in all parameters of a car that is being created, and checks if they are all valid
     Function ValidateInputs(make As String, model As String, year As Integer, price As Double) As String
         Dim errorMsg As String = String.Empty
         Dim numericPrice As Double
@@ -99,9 +98,26 @@ Public Class CarInventory
 
         txtOutput.Text = "Reset form"
     End Sub
-
+    ' Procedure updates the existing car inventory by adding in a new object
     Private Sub UpdateCarInventory()
+        Dim carInventoryItem As ListViewItem
 
+        updatingData = True
+        lvCarInventory.Items.Clear()
+
+        For Each car As Car In cars
+            carInventoryItem = New ListViewItem()
+
+            carInventoryItem.Checked = car.NewCar
+            carInventoryItem.SubItems.Add(car.ID)
+            carInventoryItem.SubItems.Add(car.Make)
+            carInventoryItem.SubItems.Add(car.Model)
+            carInventoryItem.SubItems.Add(car.Year)
+            carInventoryItem.SubItems.Add(car.Price)
+
+            lvCarInventory.Items.Add(carInventoryItem)
+        Next
+        updatingData = False ' No longer updating data
     End Sub
 #End Region
 End Class

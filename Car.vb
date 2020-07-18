@@ -16,21 +16,37 @@ Public Class Car
 #Region "Constructors"
     ' Default constructor
     Public Sub New()
-        carID = carCount
         carCount += 1
+        carID = carCount
     End Sub
     ' Parameterized constructor
-    Public Sub New(make As String, model As String, year As Integer, price As Decimal, newCar As Boolean)
+    Public Sub New(newCar As Boolean, make As String, model As String, year As Integer, price As Decimal)
         Me.New() ' Calls the default constructor
+        Me.NewCar = newCar
         Me.Make = make
         Me.Model = model
         Me.Year = year
         Me.Price = price
-        Me.NewCar = newCar
+
     End Sub
 #End Region
 
 #Region "Property Methods"
+    ' Boolean of whether the car is new property
+    Public Property NewCar() As Boolean
+        Get
+            Return newStatus
+        End Get
+        Set(ByVal value As Boolean)
+            newStatus = value
+        End Set
+    End Property
+    ' The car's unique ID property
+    Public ReadOnly Property ID() As Integer
+        Get
+            Return carID
+        End Get
+    End Property
     ' Car's make property
     Public Property Make() As String
         Get
@@ -67,22 +83,7 @@ Public Class Car
             carPrice = value
         End Set
     End Property
-    ' Boolean of whether the car is new property
-    Public Property NewCar() As Boolean
-        Get
-            Return newStatus
-        End Get
-        Set(ByVal value As Boolean)
-            newStatus = value
-        End Set
-    End Property
-
-    Public ReadOnly Property IDofCar() As Integer
-        Get
-            Return carID
-        End Get
-    End Property
-
+    ' The number of cars that have been entered into the inventory property
     Public ReadOnly Property Total() As Integer
         Get
             Return carCount
@@ -92,7 +93,7 @@ Public Class Car
 #End Region
 
 #Region "Methods"
-    ' A function that prints a string, containing a car's details.
+    ' A function that prints a string, containing a car's parameters
     Public Function GetCarData() As String
         Return "The " & Me.Make & " " & Me.Model & " is listed at $" & Me.Price
     End Function
